@@ -504,7 +504,7 @@ func (c *WebhookConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 		return fmt.Errorf("at most one of url & url_file must be configured")
 	}
 	if c.URL != nil {
-		if c.URL.Scheme != "https" && c.URL.Scheme != "http" {
+		if c.URL.Host != "" && (c.URL.Scheme != "https" && c.URL.Scheme != "http") {
 			return fmt.Errorf("scheme required for webhook url")
 		}
 	}

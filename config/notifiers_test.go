@@ -310,6 +310,17 @@ http_config:
 	}
 }
 
+func TestWebhookHttpConfigObfuscatedUrl(t *testing.T) {
+	in := `
+url: '<secret>'
+`
+	var cfg WebhookConfig
+	err := yaml.Unmarshal([]byte(in), &cfg)
+	if err != nil {
+		t.Fatalf("no error expected, returned:\n%v", err.Error())
+	}
+}
+
 func TestVictorOpsConfiguration(t *testing.T) {
 	t.Run("valid configuration", func(t *testing.T) {
 		in := `
